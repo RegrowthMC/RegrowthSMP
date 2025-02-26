@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "org.lushplugins"
-version = "1.1.8"
+version = "1.1.9"
 
 dependencies {
     // Dependencies

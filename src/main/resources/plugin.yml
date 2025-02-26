@@ -14,3 +14,5 @@ commands:
     usage: /recipes
   abilities:
     usage: /abilities
+  function:
+    usage: /function

@@ -6,6 +6,7 @@ import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
+import org.lushplugins.regrowthsmp.module.function.Functions;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
@@ -19,6 +20,7 @@ public enum ModuleType {
     ABILITIES((plugin) -> new Abilities(plugin)),
     COSMETICS((plugin) -> new Cosmetics(plugin)),
     CRATE_ANIMATION((plugin) -> new CrateAnimation(plugin)),
+    FUNCTIONS((plugin) -> new Functions(plugin)),
     GLASS_ITEM_FRAMES((plugin) -> new GlassItemFrames(plugin)),
     LUCK_PERMS_CONTEXTS((plugin) -> new ExtraLuckPermsContexts(plugin)),
     RECIPES((plugin) -> new Recipes(plugin)),

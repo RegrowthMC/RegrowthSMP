@@ -1,0 +1,5 @@
+commands:
+  - "say 1"
+  - "say 2"
+
+command-selection: RANDOM

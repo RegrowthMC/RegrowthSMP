@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:extraluckpermscontexts"))
+    implementation(project(":modules:functions"))
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:pinata"))
     implementation(project(":modules:recipes"))

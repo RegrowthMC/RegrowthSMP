@@ -11,7 +11,6 @@ import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.utils.DisplayItemStack;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class GiveCosmeticCommand extends Command {
 
     public GiveCosmeticCommand() {
         super("givecosmetic");
+        addRequiredPermission("regrowthsmp.cosmetics.give");
     }
 
     @Override

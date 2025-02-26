@@ -15,6 +15,7 @@ public class ReloadCommand extends SubCommand {
 
     public ReloadCommand() {
         super("reload");
+        addRequiredPermission("regrowthsmp.reload");
     }
 
     @Override

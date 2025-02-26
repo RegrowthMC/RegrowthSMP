@@ -38,10 +38,10 @@ public class AbilityButton extends ItemButton {
             UUID uuid = player.getUniqueId();
             AbilitiesUser user = Abilities.getInstance().getCachedUserData(uuid);
             if (user != null) {
-                if (user.isOnAbilityChangeCooldown()){ {
+                if (!player.hasPermission("regrowthsmp.abilities.bypasscooldown") && user.isOnAbilityChangeCooldown()) {
                     ChatColorHandler.sendMessage(player, String.format("&#ff6969You are on ability change cooldown for %s seconds", user.remainingAbilityChangeCooldown()));
                     return;
-                }}
+                }
 
                 user.setCurrentAbility(ability);
                 user.startAbilityChangeCooldown();

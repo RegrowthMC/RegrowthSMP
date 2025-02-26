@@ -1,2 +1,6 @@
 health-per-player: 5
 max-health: 250
+
+pinata:
+  - "phantom"
+  - "sniffer"

@@ -9,6 +9,7 @@ import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 import org.lushplugins.regrowthsmp.module.function.Functions;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
+import org.lushplugins.regrowthsmp.module.pinata.Pinata;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.UnbreakableBlocks;
 import org.lushplugins.regrowthsmp.module.welcome.Welcome;
@@ -23,6 +24,7 @@ public enum ModuleType {
     FUNCTIONS((plugin) -> new Functions(plugin)),
     GLASS_ITEM_FRAMES((plugin) -> new GlassItemFrames(plugin)),
     LUCK_PERMS_CONTEXTS((plugin) -> new ExtraLuckPermsContexts(plugin)),
+    PINATA((plugin) -> new Pinata(plugin)),
     RECIPES((plugin) -> new Recipes(plugin)),
     UNBREAKABLE_BLOCKS((plugin) -> new UnbreakableBlocks(plugin)),
     WELCOME((plugin) -> new Welcome(plugin));

@@ -1,6 +1,7 @@
 package org.lushplugins.regrowthsmp.module;
 
 import org.lushplugins.lushlib.manager.Manager;
+import org.lushplugins.regrowthsmp.RegrowthSMP;
 import org.lushplugins.regrowthsmp.common.module.Module;
 
 import java.util.Collection;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class ModuleManager extends Manager {
-    private final HashMap<ModuleType, Module> modules = new HashMap<>();
+    private final HashMap<String, Module> modules = new HashMap<>();
 
     @Override
     public void onDisable() {
@@ -19,7 +20,7 @@ public class ModuleManager extends Manager {
         modules.clear();
     }
 
-    public Set<ModuleType> getModuleTypes() {
+    public Set<String> getModuleTypes() {
         return modules.keySet();
     }
 
@@ -27,22 +28,22 @@ public class ModuleManager extends Manager {
         return modules.values();
     }
 
-    public Module getModule(ModuleType type) {
-        return modules.get(type);
+    public Module getModule(String moduleId) {
+        return modules.get(moduleId);
     }
 
-    public void enableModule(ModuleType moduleType) {
-        Module module = modules.get(moduleType);
+    public void enableModule(String moduleId) {
+        Module module = modules.get(moduleId);
         if (module == null) {
-            module = moduleType.init();
-            modules.put(moduleType, module);
+            module = RegrowthSMP.getInstance().getModuleRegistry().constructModule(moduleId);
+            modules.put(moduleId, module);
         }
 
         module.reload();
     }
 
-    public void disableModule(ModuleType moduleType) {
-        Module module = modules.get(moduleType);
+    public void disableModule(String moduleId) {
+        Module module = modules.get(moduleId);
         if (module != null) {
             module.disable();
         }

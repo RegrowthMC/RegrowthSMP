@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import org.lushplugins.regrowthsmp.RegrowthSMP;
 import org.lushplugins.regrowthsmp.common.data.UserData;
 import org.lushplugins.regrowthsmp.common.module.Module;
-import org.lushplugins.regrowthsmp.module.ModuleType;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -34,11 +33,10 @@ public class SMPUser implements org.lushplugins.regrowthsmp.common.data.SMPUser 
 
             JsonObject modules = json.get("modules").getAsJsonObject();
             for (Map.Entry<String, JsonElement> entry : modules.entrySet()) {
-                String moduleId = entry.getKey();
+                String moduleId = entry.getKey().toLowerCase();
                 JsonObject moduleDataObj = entry.getValue().getAsJsonObject();
 
-                ModuleType moduleType = ModuleType.valueOf(moduleId.toUpperCase());
-                Module module = RegrowthSMP.getInstance().getModuleManager().getModule(moduleType);
+                Module module = RegrowthSMP.getInstance().getModuleManager().getModule(moduleId);
                 if (module != null && module.storesUserData()) {
                     UserData userData = module.createUserData(uuid, moduleDataObj);
                     if (userData != null) {

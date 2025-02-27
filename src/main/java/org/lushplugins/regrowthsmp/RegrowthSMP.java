@@ -8,6 +8,7 @@ import org.lushplugins.regrowthsmp.config.ConfigManager;
 import org.lushplugins.regrowthsmp.data.UserManager;
 import org.lushplugins.regrowthsmp.listener.PlayerListener;
 import org.lushplugins.regrowthsmp.module.ModuleManager;
+import org.lushplugins.regrowthsmp.module.ModuleRegistry;
 import org.lushplugins.regrowthsmp.storage.StorageManager;
 
 import java.util.UUID;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public final class RegrowthSMP extends RegrowthPlugin {
     private static RegrowthSMP plugin;
 
+    private ModuleRegistry moduleRegistry;
     private StorageManager storageManager;
     private UserManager userManager;
     private ModuleManager moduleManager;
@@ -24,6 +26,7 @@ public final class RegrowthSMP extends RegrowthPlugin {
     public void onLoad() {
         plugin = this;
         LushLib.getInstance().enable(this);
+        moduleRegistry = new ModuleRegistry();
     }
 
     @Override
@@ -60,6 +63,10 @@ public final class RegrowthSMP extends RegrowthPlugin {
             storageManager.disable();
             storageManager = null;
         }
+    }
+
+    public ModuleRegistry getModuleRegistry() {
+        return moduleRegistry;
     }
 
     @Override

@@ -7,4 +7,5 @@ modules:
   luck_perms_contexts: true
   recipes: true
   unbreakable_blocks: true
+  utilities: true
   welcome: true

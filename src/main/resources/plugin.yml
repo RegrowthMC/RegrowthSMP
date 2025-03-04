@@ -16,3 +16,5 @@ commands:
     usage: /abilities
   function:
     usage: /function
+  timer:
+    usage: /timer

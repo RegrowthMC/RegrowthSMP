@@ -7,8 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.command.Command;
 import org.lushplugins.lushlib.timer.BossBarTimer;
+import org.lushplugins.lushlib.timer.RainbowBossBarTimer;
 import org.lushplugins.regrowthsmp.module.utilities.Utilities;
-import org.lushplugins.regrowthsmp.module.utilities.timer.RainbowBossBarTimer;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -56,7 +56,7 @@ public class TimerCommand extends Command {
 
     @Override
     public @Nullable List<String> tabComplete(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command command, @NotNull String label, @NotNull String[] args, @NotNull String[] fullArgs) {
-        return switch (args.length) {
+        return switch (fullArgs.length) {
             case 1 -> Collections.singletonList("<duration>");
             case 2 -> {
                 List<String> results = Arrays.stream(BarColor.values())

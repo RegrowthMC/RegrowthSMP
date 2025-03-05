@@ -20,7 +20,7 @@ public class TimerCommand extends Command {
 
     public TimerCommand() {
         super("timer");
-        addRequiredPermission("%s.utilities.timer".formatted(Utilities.getInstance().getPlugin().getName()));
+        addRequiredPermission("%s.utilities.timer".formatted(Utilities.getInstance().getPlugin().getName().toLowerCase()));
     }
 
     @Override

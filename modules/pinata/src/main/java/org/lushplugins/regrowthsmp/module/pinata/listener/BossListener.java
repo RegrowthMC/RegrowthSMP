@@ -20,7 +20,7 @@ public class BossListener implements Listener {
     public void onBossSpawn(SkillEntitySpawnEvent event) {
         LivingEntity entity = event.getEntity();
 
-        if (!Pinata.getInstance().getConfigManager().getPinatas().contains(event.getSkillEntity().getName().toLowerCase())) {
+        if (!Pinata.getInstance().getConfigManager().getPinatas().contains(event.getSkillEntity().getName())) {
             return;
         }
 
@@ -45,7 +45,7 @@ public class BossListener implements Listener {
             return;
         }
 
-        if (!Pinata.getInstance().getConfigManager().getPinatas().contains(entity.getName().toLowerCase())) {
+        if (!Pinata.getInstance().getConfigManager().getPinatas().contains(entity.getName())) {
             return;
         }
 

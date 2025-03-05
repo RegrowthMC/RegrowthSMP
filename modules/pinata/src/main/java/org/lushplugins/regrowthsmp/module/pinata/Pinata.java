@@ -3,11 +3,15 @@ package org.lushplugins.regrowthsmp.module.pinata;
 import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.pinata.bossbar.BossBarManager;
+import org.lushplugins.regrowthsmp.module.pinata.command.SpawnPinataCommand;
 import org.lushplugins.regrowthsmp.module.pinata.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.pinata.listener.BossListener;
 import org.lushplugins.regrowthsmp.module.pinata.listener.PlayerListener;
 
+import java.util.Random;
+
 public final class Pinata extends Module {
+    private static final Random RANDOM = new Random();
     private static Pinata instance;
 
     private final ConfigManager configManager;
@@ -26,7 +30,7 @@ public final class Pinata extends Module {
         plugin.registerListener(new BossListener());
         plugin.registerListener(new PlayerListener());
 
-        // TODO: Add "pinatacountdown" command (this could also be done in functions if a "wait" option was added)
+        plugin.registerCommand(new SpawnPinataCommand());
     }
 
     @Override
@@ -40,6 +44,10 @@ public final class Pinata extends Module {
 
     public BossBarManager getBossBarManager() {
         return bossBarManager;
+    }
+
+    public static Random getRandom() {
+        return RANDOM;
     }
 
     public static Pinata getInstance() {

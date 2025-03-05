@@ -1,6 +1,14 @@
 health-per-player: 5
 max-health: 250
+spawn-location:
+  world: world
+  x: 0
+  y: 70
+  z: 0
 
-pinata:
-  - "phantom"
-  - "sniffer"
+pinatas:
+  - "Sniffer"
+
+messages:
+  pre-spawn: "A pinata is spawning at /warp pinata in 30 seconds!"
+  spawn: "A pinata has spawned at /warp pinata!"

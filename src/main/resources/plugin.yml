@@ -18,3 +18,5 @@ commands:
     usage: /function
   timer:
     usage: /timer
+  spawnpinata:
+    usage: /spawnpinata

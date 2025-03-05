@@ -19,10 +19,13 @@ public class RainbowBossBarTimer extends BossBarTimer {
     }
 
     @Override
-    protected void onDurationChange() {
-        super.onDurationChange();
+    protected void onTick() {
+        super.onTick();
 
-        this.getBossBar().setColor(this.nextColor());
+        // Updates bar color every 5 ticks
+        if (this.tick % 5 == 0) {
+            this.getBossBar().setColor(this.nextColor());
+        }
     }
 
     private BarColor nextColor() {

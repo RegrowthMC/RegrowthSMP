@@ -14,7 +14,7 @@ dependencies {
     compileOnly("org.xerial:sqlite-jdbc:3.46.0.0")
 
     // Libraries
-    implementation("org.lushplugins:LushLib:0.10.39")
+    implementation("org.lushplugins:LushLib:0.10.45")
 
     // Modules
     implementation(project(":common"))
@@ -59,7 +59,7 @@ subprojects {
     version = rootProject.version
 
     dependencies {
-        compileOnly("org.lushplugins:LushLib:0.10.39")
+        compileOnly("org.lushplugins:LushLib:0.10.45")
 
         if (project.name != "common") {
             compileOnly(project(":common"))

@@ -20,3 +20,5 @@ commands:
     usage: /timer
   spawnpinata:
     usage: /spawnpinata
+  schedule:
+    usage: /schedule

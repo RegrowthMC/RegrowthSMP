@@ -26,6 +26,7 @@ dependencies {
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:pinata"))
     implementation(project(":modules:recipes"))
+    implementation(project(":modules:schedule"))
     implementation(project(":modules:unbreakableblocks"))
     implementation(project(":modules:utilities"))
     implementation(project(":modules:welcome"))

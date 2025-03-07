@@ -12,6 +12,7 @@ import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.UnbreakableBlocks;
+import org.lushplugins.regrowthsmp.module.utilities.Schedule;
 import org.lushplugins.regrowthsmp.module.utilities.Utilities;
 import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 
@@ -32,6 +33,7 @@ public class ModuleRegistry {
         registerModule("luck_perms_contexts", (plugin) -> new ExtraLuckPermsContexts(plugin));
         registerModule("pinata", (plugin) -> new Pinata(plugin));
         registerModule("recipes", (plugin) -> new Recipes(plugin));
+        registerModule("schedule", (plugin) -> new Schedule(plugin));
         registerModule("unbreakable_blocks", (plugin) -> new UnbreakableBlocks(plugin));
         registerModule("utilities", (plugin) -> new Utilities(plugin));
         registerModule("welcome", (plugin) -> new Welcome(plugin));

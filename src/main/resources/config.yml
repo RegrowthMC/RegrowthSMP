@@ -6,6 +6,7 @@ modules:
   pinata: true
   luck_perms_contexts: true
   recipes: true
+  schedule: true
   unbreakable_blocks: true
   utilities: true
   welcome: true

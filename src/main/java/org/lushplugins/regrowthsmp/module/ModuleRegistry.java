@@ -12,7 +12,7 @@ import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.UnbreakableBlocks;
-import org.lushplugins.regrowthsmp.module.utilities.Schedule;
+import org.lushplugins.regrowthsmp.module.schedule.Schedule;
 import org.lushplugins.regrowthsmp.module.utilities.Utilities;
 import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 

@@ -2,6 +2,7 @@ package org.lushplugins.regrowthsmp.module.schedule.command;
 
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.command.Command;
 import org.lushplugins.regrowthsmp.module.schedule.Schedule;
 import org.lushplugins.regrowthsmp.module.schedule.schedule.ScheduleManager;
@@ -47,6 +48,15 @@ public class ScheduleCommand extends Command {
         scheduleManager.updateTask();
         // TODO: Message
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> tabComplete(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command command, @NotNull String label, @NotNull String[] args, @NotNull String[] fullArgs) {
+        return switch (fullArgs.length) {
+            case 0 -> null;
+            case 1 -> List.of("<delay>");
+            default -> List.of("<command>");
+        };
     }
 
     private static long getDelayInSeconds(String delayRaw) throws IllegalArgumentException {

@@ -9,6 +9,8 @@ import org.lushplugins.regrowthsmp.module.schedule.schedule.ScheduleManager;
 import org.lushplugins.regrowthsmp.module.schedule.schedule.action.ScheduledCommands;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,12 +41,17 @@ public class ScheduleCommand extends Command {
             return true;
         }
 
-        long triggerEpoch = Instant.now().getEpochSecond() + delay;
+        Instant instant = Instant.now();
+        Instant delayedInstant = instant.plusSeconds(delay);
+
         ScheduledCommands action = new ScheduledCommands(List.of(
-            String.join(" ", Arrays.copyOfRange(args, 1, args.length)).split("&& ")));
+            String.join(" ", Arrays.copyOfRange(args, 1, args.length))
+                .replace("%time%", delayedInstant.atZone(ZoneId.systemDefault())
+                    .format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm")))
+                .split("&& ")));
 
         ScheduleManager scheduleManager = Schedule.getInstance().getScheduleManager();
-        scheduleManager.scheduleActionAt(triggerEpoch, action);
+        scheduleManager.scheduleActionAt(delayedInstant.getEpochSecond(), action);
         scheduleManager.updateTask();
         // TODO: Message
         return true;

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.schedule.command.ScheduleCommand;
+import org.lushplugins.regrowthsmp.module.schedule.command.WithDelayedTimeCommand;
 import org.lushplugins.regrowthsmp.module.schedule.schedule.ScheduleLoader;
 import org.lushplugins.regrowthsmp.module.schedule.schedule.ScheduleManager;
 
@@ -22,6 +23,7 @@ public class Schedule extends Module {
         this.scheduleManager = new ScheduleManager();
 
         plugin.registerCommand(new ScheduleCommand());
+        plugin.registerCommand(new WithDelayedTimeCommand());
     }
 
     @Override

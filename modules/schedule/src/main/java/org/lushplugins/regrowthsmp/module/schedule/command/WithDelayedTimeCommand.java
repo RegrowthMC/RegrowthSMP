@@ -1,24 +1,24 @@
 package org.lushplugins.regrowthsmp.module.schedule.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.command.Command;
 import org.lushplugins.regrowthsmp.module.schedule.Schedule;
-import org.lushplugins.regrowthsmp.module.schedule.schedule.ScheduleManager;
-import org.lushplugins.regrowthsmp.module.schedule.schedule.action.ScheduledCommands;
 import org.lushplugins.regrowthsmp.module.schedule.util.TimeUtils;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-// Command Format: /schedule <delay> <command>
-public class ScheduleCommand extends Command {
+public class WithDelayedTimeCommand extends Command {
 
-    public ScheduleCommand() {
-        super("schedule");
-        addRequiredPermission("%s.utilities.schedule".formatted(Schedule.getInstance().getPlugin().getName().toLowerCase()));
+    public WithDelayedTimeCommand() {
+        super("withdelayedtime");
+        addRequiredPermission("%s.utilities.withdelayedtime".formatted(Schedule.getInstance().getPlugin().getName().toLowerCase()));
     }
 
     @Override
@@ -36,14 +36,17 @@ public class ScheduleCommand extends Command {
             return true;
         }
 
-        ScheduledCommands action = new ScheduledCommands(List.of(
-            String.join(" ", Arrays.copyOfRange(args, 1, args.length))
-                .split("&& ")));
-
         Instant delayedInstant = Instant.now().plusSeconds(delay);
-        ScheduleManager scheduleManager = Schedule.getInstance().getScheduleManager();
-        scheduleManager.scheduleActionAt(delayedInstant.getEpochSecond(), action);
-        scheduleManager.updateTask();
+
+        String[] commands = String.join(" ", Arrays.copyOfRange(args, 1, args.length))
+                .replace("%time%", delayedInstant.atZone(ZoneId.systemDefault())
+                    .format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm")))
+                .split("&& ");
+
+        for (String aCommand : commands) {
+            Bukkit.dispatchCommand(sender, aCommand);
+        }
+
         // TODO: Message
         return true;
     }

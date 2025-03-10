@@ -22,3 +22,5 @@ commands:
     usage: /spawnpinata
   schedule:
     usage: /schedule
+  withdelayedtime:
+    usage: /withdelayedtime

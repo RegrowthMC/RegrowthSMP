@@ -1,6 +1,16 @@
 show-in-recipe-book: true
 
 recipes:
+  custom:magic_fish:
+    register-craft: false
+    shapeless: true
+    ingredients:
+      - material: cod
+      - material: sugar
+    result:
+      material: stick
+      display-name: "Magic Fish"
+      custom-model-data: 5
   custom:long_torch:
     ingredients:
       '1':

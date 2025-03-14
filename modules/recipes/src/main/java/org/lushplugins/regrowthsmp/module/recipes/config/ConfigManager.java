@@ -3,7 +3,6 @@ package org.lushplugins.regrowthsmp.module.recipes.config;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Recipe;
 import org.lushplugins.lushlib.gui.inventory.GuiFormat;
@@ -13,7 +12,6 @@ import org.lushplugins.lushlib.utils.converter.YamlConverter;
 import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 import org.lushplugins.regrowthsmp.module.recipes.recipe.CraftingRecipe;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +42,7 @@ public class ConfigManager {
             boolean shapeless = recipeSection.getBoolean("shapeless");
             recipeBuilder.shapeless(shapeless);
             recipeBuilder.showInRecipeBook(showInRecipeBook);
+            recipeBuilder.registerCraft(recipeSection.getBoolean("register-craft", true));
 
             List<ConfigurationSection> ingredientSections = YamlUtils.getConfigurationSections(recipeSection, "ingredients");
             for (ConfigurationSection ingredientSection : ingredientSections) {
@@ -92,8 +91,10 @@ public class ConfigManager {
                 Bukkit.removeRecipe(key);
             }
 
-            bukkitRecipe = recipe.createBukkitRecipe();
-            Bukkit.addRecipe(bukkitRecipe, true);
+            if (recipe.shouldRegisterCraft()) {
+                bukkitRecipe = recipe.createBukkitRecipe();
+                Bukkit.addRecipe(bukkitRecipe, true);
+            }
         }
 
         if (showInRecipeBook) {

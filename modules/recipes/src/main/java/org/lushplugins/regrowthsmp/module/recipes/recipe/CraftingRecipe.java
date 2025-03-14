@@ -18,13 +18,15 @@ public class CraftingRecipe {
     private final DisplayItemStack result;
     private final boolean shapeless;
     private final boolean inRecipeBook;
+    private final boolean registerCraft;
 
-    private CraftingRecipe(NamespacedKey key, DisplayItemStack[] ingredients, DisplayItemStack result, boolean shapeless, boolean inRecipeBook) {
+    private CraftingRecipe(NamespacedKey key, DisplayItemStack[] ingredients, DisplayItemStack result, boolean shapeless, boolean inRecipeBook, boolean registerCraft) {
         this.key = key;
         this.ingredients = ingredients;
         this.result = result;
         this.shapeless = shapeless;
         this.inRecipeBook = inRecipeBook;
+        this.registerCraft = registerCraft;
     }
 
     public @NotNull NamespacedKey getKey() {
@@ -52,6 +54,10 @@ public class CraftingRecipe {
 
     public boolean isCustom() {
         return !inRecipeBook || Arrays.stream(ingredients).anyMatch(DisplayItemStack::hasMeta);
+    }
+
+    public boolean shouldRegisterCraft() {
+        return registerCraft;
     }
 
     public boolean matchesRecipe(ItemStack[] ingredients) {
@@ -170,6 +176,7 @@ public class CraftingRecipe {
         private DisplayItemStack result;
         private boolean shapeless = false;
         private boolean inRecipeBook = true;
+        private boolean registerCraft = true;
 
         private Builder(@NotNull NamespacedKey key) {
             this.key = key;
@@ -224,6 +231,14 @@ public class CraftingRecipe {
         }
 
         /**
+         * @param registerCraft whether the craft should be registered
+         */
+        public Builder registerCraft(boolean registerCraft) {
+            this.registerCraft = registerCraft;
+            return this;
+        }
+
+        /**
          * @return a built recipe
          */
         public CraftingRecipe build() {
@@ -231,7 +246,7 @@ public class CraftingRecipe {
                 throw new IllegalArgumentException("Crafting recipe requires a result");
             }
 
-            return new CraftingRecipe(key, ingredients, result, shapeless, inRecipeBook);
+            return new CraftingRecipe(key, ingredients, result, shapeless, inRecipeBook, registerCraft);
         }
     }
 }

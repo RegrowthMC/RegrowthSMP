@@ -65,7 +65,7 @@ public class BoatBoostAbility extends Ability implements Listener {
             direction
                 .normalize()
                 .multiply(2)
-                .setY(0.5)
+                .setY(0.7)
         );
     }
 }

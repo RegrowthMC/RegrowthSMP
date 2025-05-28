@@ -9,6 +9,7 @@ import org.lushplugins.regrowthsmp.data.UserManager;
 import org.lushplugins.regrowthsmp.listener.PlayerListener;
 import org.lushplugins.regrowthsmp.module.ModuleManager;
 import org.lushplugins.regrowthsmp.module.ModuleRegistry;
+import org.lushplugins.regrowthsmp.module.bookreader.BookReader;
 import org.lushplugins.regrowthsmp.storage.StorageManager;
 
 import java.util.UUID;
@@ -27,6 +28,8 @@ public final class RegrowthSMP extends RegrowthPlugin {
         plugin = this;
         LushLib.getInstance().enable(this);
         moduleRegistry = new ModuleRegistry();
+
+        BookReader.prepare();
     }
 
     @Override

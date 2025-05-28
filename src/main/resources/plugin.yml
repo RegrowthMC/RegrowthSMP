@@ -5,6 +5,7 @@ api-version: '1.21'
 softdepend:
   - Animatronics
   - ExcellentCrates
+  - WorldGuard
 commands:
   regrowthsmp:
     usage: /regrowthsmp

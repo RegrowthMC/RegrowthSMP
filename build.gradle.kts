@@ -22,6 +22,7 @@ allprojects {
         maven("https://repo.opencollab.dev/main/") // Floodgate
         maven("https://repo.auxilor.io/repository/maven-public/") // EcoSkills
         maven("https://repo.helpch.at/releases/") // PlaceholderAPI
+        maven("https://maven.enginehub.org/repo/") // WorldGuard
         maven("https://jitpack.io/") // nightcore
     }
 
@@ -76,6 +77,7 @@ dependencies {
     // Modules
     implementation(project(":common"))
     implementation(project(":modules:abilities"))
+    implementation(project(":modules:bookreader"))
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:extraluckpermscontexts"))
@@ -105,6 +107,8 @@ tasks {
             hangar("Floodgate", "Floodgate")
             github("nulli0n", "nightcore-spigot", "v2.6.3-updated", "nightcore-2.6.3.jar")
             hangar("PlaceholderAPI", "2.11.6")
+            modrinth("worldedit", "Bu1zaaoc")
+            modrinth("worldguard", "7.0.12")
         }
     }
 }

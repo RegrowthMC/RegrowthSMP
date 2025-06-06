@@ -1,6 +1,7 @@
 package org.lushplugins.regrowthsmp.module.pinata.command;
 
 import club.minnced.discord.webhook.WebhookClient;
+import club.minnced.discord.webhook.send.WebhookEmbedBuilder;
 import club.minnced.discord.webhook.send.WebhookMessageBuilder;
 import me.xemor.enchantedbosses.BossHandler;
 import me.xemor.enchantedbosses.EnchantedBosses;
@@ -14,6 +15,7 @@ import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.timer.BossBarTimer;
 import org.lushplugins.lushlib.timer.RainbowBossBarTimer;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
+import org.lushplugins.regrowthsmp.module.pinata.util.TimeFormatter;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -38,7 +40,7 @@ public class SpawnPinataCommand extends Command {
         timer.start();
         Pinata.getInstance().getConfigManager().getOptionalMessage("pre-spawn")
             .ifPresent(message -> ChatColorHandler.broadcastMessage(message
-                    .replace("%duration%", String.valueOf(duration))));
+                    .replace("%duration%", TimeFormatter.formatDuration(duration))));
 
         Pinata.getInstance().getConfigManager().getOptionalMessage("pre-spawn-discord")
             .ifPresent(message -> {
@@ -50,7 +52,11 @@ public class SpawnPinataCommand extends Command {
                 Bukkit.getScheduler().runTaskAsynchronously(Pinata.getInstance().getPlugin(), () -> {
                     try (WebhookClient client = WebhookClient.withUrl(webhookUrl)) {
                         client.send(new WebhookMessageBuilder()
-                            .setContent(message)
+                            .addEmbeds(new WebhookEmbedBuilder()
+                                .setDescription(message
+                                    .replace("%duration%", TimeFormatter.formatDuration(duration)))
+                                .setColor(12451851)
+                                .build())
                             .build());
                     }
                 });

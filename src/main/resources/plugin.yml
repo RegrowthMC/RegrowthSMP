@@ -4,6 +4,7 @@ main: org.lushplugins.regrowthsmp.RegrowthSMP
 api-version: '1.21'
 softdepend:
   - Animatronics
+  - EnchantedBosses
   - ExcellentCrates
   - WorldGuard
 commands:

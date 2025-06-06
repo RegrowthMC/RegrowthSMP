@@ -3,7 +3,6 @@ package org.lushplugins.regrowthsmp.module.function.function;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.lushplugins.regrowthsmp.module.function.Functions;
 
 import java.util.List;
 import java.util.Random;

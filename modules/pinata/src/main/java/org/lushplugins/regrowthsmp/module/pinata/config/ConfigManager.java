@@ -17,8 +17,10 @@ public class ConfigManager {
     private int healthPerPlayer;
     private int maxHealth;
     private Location spawnLocation;
+    private int spawnDuration;
     private List<String> pinatas;
     private Map<String, String> messages;
+    private String discordWebhook;
 
     public ConfigManager() {
         Pinata.getInstance().getPlugin().saveDefaultResource("modules/pinata.yml");
@@ -35,12 +37,14 @@ public class ConfigManager {
             config.getDouble("spawn-location.y"),
             config.getDouble("spawn-location.z")
         );
+        this.spawnDuration = config.getInt("spawn-duration", 30);
         this.pinatas = config.getStringList("pinatas");
         this.messages = config.getConfigurationSection("messages").getValues(false).entrySet().stream()
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
                 entry -> (String) entry.getValue()
             ));
+        this.discordWebhook = config.getString("discord-webhook");
     }
 
     public int getHealthPerPlayer() {
@@ -53,6 +57,10 @@ public class ConfigManager {
 
     public Location getSpawnLocation() {
         return spawnLocation;
+    }
+
+    public int getSpawnDuration() {
+        return spawnDuration;
     }
 
     public List<String> getPinatas() {
@@ -76,5 +84,9 @@ public class ConfigManager {
         if (message != null) {
             ChatColorHandler.sendMessage(sender, parser.apply(message));
         }
+    }
+
+    public String getDiscordWebhook() {
+        return discordWebhook;
     }
 }

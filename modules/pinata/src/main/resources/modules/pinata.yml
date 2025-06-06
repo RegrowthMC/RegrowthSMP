@@ -10,5 +10,8 @@ pinatas:
   - "Sniffer"
 
 messages:
-  pre-spawn: "A pinata is spawning at /warp pinata in 30 seconds!"
+  pre-spawn: "A pinata is spawning at /warp pinata in %duration% seconds!"
+  pre-spawn-discord: "A pinata is spawning at /warp pinata in %duration% seconds!"
   spawn: "A pinata has spawned at /warp pinata!"
+
+discord-webhook: {}

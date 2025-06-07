@@ -17,6 +17,7 @@ import org.lushplugins.lushlib.timer.RainbowBossBarTimer;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
 import org.lushplugins.regrowthsmp.module.pinata.util.TimeFormatter;
 
+import java.awt.*;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -55,7 +56,7 @@ public class SpawnPinataCommand extends Command {
                             .addEmbeds(new WebhookEmbedBuilder()
                                 .setDescription(message
                                     .replace("%duration%", TimeFormatter.formatDuration(duration)))
-                                .setColor(12451851)
+                                .setColor(new Color(189, 255, 203).getRGB())
                                 .build())
                             .build());
                     }

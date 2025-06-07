@@ -14,10 +14,11 @@ import org.lushplugins.lushlib.command.Command;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.timer.BossBarTimer;
 import org.lushplugins.lushlib.timer.RainbowBossBarTimer;
+import org.lushplugins.lushlib.utils.TimeFormatter;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
-import org.lushplugins.regrowthsmp.module.pinata.util.TimeFormatter;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -32,7 +33,7 @@ public class SpawnPinataCommand extends Command {
     public boolean execute(@NotNull CommandSender commandSender, @NotNull org.bukkit.command.Command command, @NotNull String s, @NotNull String[] strings, @NotNull String[] strings1) {
         int duration = Pinata.getInstance().getConfigManager().getSpawnDuration();
         BossBarTimer timer = new RainbowBossBarTimer(
-            "<gradient:#FF8C8D:#FEB070:#FDE689:#DFFF94:#B2E6FC:#F0BDFF>Pinata spawning in %remaining_duration% seconds!",
+            "<gradient:#FF8C8D:#FEB070:#FDE689:#DFFF94:#B2E6FC:#F0BDFF>Pinata spawning in %remaining_duration%!",
             BarStyle.SEGMENTED_10,
             Pinata.getInstance().getPlugin(),
             duration);
@@ -41,7 +42,9 @@ public class SpawnPinataCommand extends Command {
         timer.start();
         Pinata.getInstance().getConfigManager().getOptionalMessage("pre-spawn")
             .ifPresent(message -> ChatColorHandler.broadcastMessage(message
-                    .replace("%duration%", TimeFormatter.formatDuration(duration))));
+                    .replace("%duration%", TimeFormatter.formatDuration(
+                        Duration.ofSeconds(duration),
+                        TimeFormatter.FormatType.LONG_FORM))));
 
         Pinata.getInstance().getConfigManager().getOptionalMessage("pre-spawn-discord")
             .ifPresent(message -> {
@@ -55,7 +58,9 @@ public class SpawnPinataCommand extends Command {
                         client.send(new WebhookMessageBuilder()
                             .addEmbeds(new WebhookEmbedBuilder()
                                 .setDescription(message
-                                    .replace("%duration%", TimeFormatter.formatDuration(duration)))
+                                    .replace("%duration%", TimeFormatter.formatDuration(
+                                        Duration.ofSeconds(duration),
+                                        TimeFormatter.FormatType.LONG_FORM)))
                                 .setColor(new Color(189, 255, 203).getRGB())
                                 .build())
                             .build());

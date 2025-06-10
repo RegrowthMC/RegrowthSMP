@@ -3,6 +3,7 @@ package org.lushplugins.regrowthsmp.module.pinata;
 import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.pinata.bossbar.BossBarManager;
+import org.lushplugins.regrowthsmp.module.pinata.command.PreparePinataCommand;
 import org.lushplugins.regrowthsmp.module.pinata.command.SpawnPinataCommand;
 import org.lushplugins.regrowthsmp.module.pinata.config.ConfigManager;
 import org.lushplugins.regrowthsmp.module.pinata.listener.BossListener;
@@ -30,6 +31,7 @@ public final class Pinata extends Module {
         plugin.registerListener(new BossListener());
         plugin.registerListener(new PlayerListener());
 
+        plugin.registerCommand(new PreparePinataCommand());
         plugin.registerCommand(new SpawnPinataCommand());
     }
 

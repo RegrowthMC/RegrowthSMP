@@ -20,6 +20,8 @@ commands:
     usage: /function
   timer:
     usage: /timer
+  preparepinata:
+    usage: /preparepinata
   spawnpinata:
     usage: /spawnpinata
   schedule:

@@ -10,6 +10,7 @@ pinatas:
   - "Sniffer"
 
 messages:
+  prepare-pinata-discord: "The pinata pool is now accepting items at /warp pinata!"
   pre-spawn: "A pinata is spawning at /warp pinata in %duration% seconds!"
   pre-spawn-discord: "A pinata is spawning at /warp pinata in %duration% seconds!"
   spawn: "A pinata has spawned at /warp pinata!"

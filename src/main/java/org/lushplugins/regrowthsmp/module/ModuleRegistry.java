@@ -5,6 +5,7 @@ import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 import org.lushplugins.regrowthsmp.module.bookreader.BookReader;
+import org.lushplugins.regrowthsmp.module.cosmetics.ClaimNotifs;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
@@ -28,6 +29,7 @@ public class ModuleRegistry {
     public ModuleRegistry() {
         registerModule("abilities", (plugin) -> new Abilities(plugin));
         registerModule("book_reader", (plugin) -> new BookReader(plugin));
+        registerModule("claim_notifs", (plugin) -> new ClaimNotifs(plugin));
         registerModule("cosmetics", (plugin) -> new Cosmetics(plugin));
         registerModule("crate_animation", (plugin) -> new CrateAnimation(plugin));
         registerModule("functions", (plugin) -> new Functions(plugin));

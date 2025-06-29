@@ -1,0 +1,6 @@
+notifications:
+  block-place:
+    - beacon
+
+messages:
+  block-place: "<#ffda54>You placed a <#e0c01b>%material%</#e0c01b> in unclaimed land, we recommend claiming your builds!</#ffda54>"

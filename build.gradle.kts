@@ -20,6 +20,7 @@ allprojects {
         maven("https://repo.lushplugins.org/releases/") // LushLib
         maven("https://repo.lushplugins.org/snapshots/") // LushLib
         maven("https://repo.opencollab.dev/main/") // Floodgate
+        maven("https://repo.william278.net/releases") // HuskClaims
         maven("https://repo.auxilor.io/repository/maven-public/") // EcoSkills
         maven("https://repo.helpch.at/releases/") // PlaceholderAPI
         maven("https://maven.enginehub.org/repo/") // WorldGuard
@@ -78,6 +79,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":modules:abilities"))
     implementation(project(":modules:bookreader"))
+    implementation(project(":modules:claimnotifs"))
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:extraluckpermscontexts"))

@@ -3,6 +3,7 @@ rootProject.name = "RegrowthSMP"
 include(":common")
 include(":modules:abilities")
 include(":modules:bookreader")
+include(":modules:claimnotifs")
 include(":modules:cosmetics")
 include(":modules:crateanimation")
 include(":modules:extraluckpermscontexts")

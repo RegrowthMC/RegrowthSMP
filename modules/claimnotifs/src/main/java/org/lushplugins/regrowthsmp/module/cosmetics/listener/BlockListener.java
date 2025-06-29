@@ -22,9 +22,9 @@ public class BlockListener implements Listener {
     private void checkAndNotify(Block block, ConfigManager.TriggerType type, Player receiver) {
         Material material = block.getType();
 
-        BukkitHuskClaimsAPI huskClaimsAPI = BukkitHuskClaimsAPI.getInstance();
-        if (!huskClaimsAPI.isClaimAt(huskClaimsAPI.getPosition(block.getLocation()))) {
-            if (ClaimNotifs.getInstance().getConfigManager().getNotifications(type).contains(material)) {
+        if (ClaimNotifs.getInstance().getConfigManager().getNotifications(type).contains(material)) {
+            BukkitHuskClaimsAPI huskClaimsAPI = BukkitHuskClaimsAPI.getInstance();
+            if (!huskClaimsAPI.isClaimAt(huskClaimsAPI.getPosition(block.getLocation()))) {
                 ClaimNotifs.getInstance().getConfigManager().sendActionBarMessage(receiver, type, (msg) -> msg
                     .replace("%material%", material.name().replace("_", " ").toLowerCase()));
             }

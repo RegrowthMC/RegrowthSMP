@@ -5,7 +5,7 @@ import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 import org.lushplugins.regrowthsmp.module.bookreader.BookReader;
-import org.lushplugins.regrowthsmp.module.cosmetics.ClaimNotifs;
+import org.lushplugins.regrowthsmp.module.claimnotifs.ClaimNotifs;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;

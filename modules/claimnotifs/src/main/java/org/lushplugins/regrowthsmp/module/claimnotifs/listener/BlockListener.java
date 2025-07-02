@@ -1,4 +1,4 @@
-package org.lushplugins.regrowthsmp.module.cosmetics.listener;
+package org.lushplugins.regrowthsmp.module.claimnotifs.listener;
 
 import net.william278.huskclaims.api.BukkitHuskClaimsAPI;
 import org.bukkit.Material;
@@ -8,8 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.lushplugins.regrowthsmp.module.cosmetics.ClaimNotifs;
-import org.lushplugins.regrowthsmp.module.cosmetics.config.ConfigManager;
+import org.lushplugins.regrowthsmp.module.claimnotifs.ClaimNotifs;
+import org.lushplugins.regrowthsmp.module.claimnotifs.config.ConfigManager;
 
 public class BlockListener implements Listener {
 

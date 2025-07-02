@@ -1,9 +1,9 @@
-package org.lushplugins.regrowthsmp.module.cosmetics;
+package org.lushplugins.regrowthsmp.module.claimnotifs;
 
 import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
-import org.lushplugins.regrowthsmp.module.cosmetics.config.ConfigManager;
-import org.lushplugins.regrowthsmp.module.cosmetics.listener.BlockListener;
+import org.lushplugins.regrowthsmp.module.claimnotifs.config.ConfigManager;
+import org.lushplugins.regrowthsmp.module.claimnotifs.listener.BlockListener;
 
 public final class ClaimNotifs extends Module {
     private static ClaimNotifs instance;

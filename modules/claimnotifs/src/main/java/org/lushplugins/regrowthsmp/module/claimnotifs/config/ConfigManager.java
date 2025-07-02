@@ -1,4 +1,4 @@
-package org.lushplugins.regrowthsmp.module.cosmetics.config;
+package org.lushplugins.regrowthsmp.module.claimnotifs.config;
 
 import org.bukkit.Material;
 import org.bukkit.Registry;
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
 import org.lushplugins.lushlib.registry.RegistryUtils;
-import org.lushplugins.regrowthsmp.module.cosmetics.ClaimNotifs;
+import org.lushplugins.regrowthsmp.module.claimnotifs.ClaimNotifs;
 
 import java.util.Collections;
 import java.util.HashMap;

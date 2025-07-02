@@ -21,7 +21,7 @@ public final class CrateAnimation extends Module {
             instance = this;
         }
 
-        OpeningManager openingManager = CratesAPI.PLUGIN.getOpeningManager();
+        OpeningManager openingManager = CratesAPI.getPlugin().getOpeningManager();
         openingManager.loadProvider("regrowth-default", AnimatronicOpening::new);
 
         plugin.registerListeners(

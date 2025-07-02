@@ -15,9 +15,9 @@ import org.jetbrains.annotations.Nullable;
 import org.lushplugins.lushlib.utils.Pair;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import su.nightexpress.excellentcrates.CratesAPI;
+import su.nightexpress.excellentcrates.api.crate.Reward;
 import su.nightexpress.excellentcrates.api.event.CrateObtainRewardEvent;
 import su.nightexpress.excellentcrates.crate.impl.CrateSource;
-import su.nightexpress.excellentcrates.crate.impl.Reward;
 import su.nightexpress.excellentcrates.key.CrateKey;
 import su.nightexpress.excellentcrates.opening.AbstractOpening;
 
@@ -27,7 +27,7 @@ public class AnimatronicOpening extends AbstractOpening {
     private boolean rolled = false;
 
     public AnimatronicOpening(@NotNull Player player, @NotNull CrateSource source, @Nullable CrateKey key) {
-        super(CratesAPI.PLUGIN, player, source, key);
+        super(CratesAPI.getPlugin(), player, source, key);
     }
 
     @Override
@@ -47,20 +47,21 @@ public class AnimatronicOpening extends AbstractOpening {
     }
 
     @Override
-    protected void onLaunch() {}
+    protected void onStart() {}
 
     @Override
     protected void onTick() {
-        super.onTick();
         if (this.isRunning()) {
             this.roll();
             this.stop();
         }
     }
 
+    @Override
+    protected void onComplete() {}
+
     public void roll() {
         this.setRefundable(false);
-        this.setHasRewardAttempts(true);
 
         Animatronic animatronic = new Animatronic("DefaultCrate");
         animatronic.start();
@@ -98,13 +99,13 @@ public class AnimatronicOpening extends AbstractOpening {
             Reward reward = crate.rollReward(player);
 
             ArmorStand armorStand = animatronic.getArmorstand();
-            if (armorStand != null) {
-                armorStand.getEquipment().setHelmet(reward.getPreview());
+            if (armorStand != null && reward.getPreview().canProduceItem()) {
+                armorStand.getEquipment().setHelmet(reward.getPreview().createItemStack());
             }
 
             Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
-                if (armorStand != null) {
-                    armorStand.getEquipment().setHelmet(reward.getPreview());
+                if (armorStand != null && reward.getPreview().canProduceItem()) {
+                    armorStand.getEquipment().setHelmet(reward.getPreview().createItemStack());
                 }
 
                 Bukkit.getScheduler().runTaskLater(this.plugin, () -> {

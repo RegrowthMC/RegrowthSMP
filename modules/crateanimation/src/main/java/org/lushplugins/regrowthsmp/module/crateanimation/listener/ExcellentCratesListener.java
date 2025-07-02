@@ -2,7 +2,6 @@ package org.lushplugins.regrowthsmp.module.crateanimation.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.lushplugins.lushlib.listener.EventListener;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.crateanimation.opening.AnimatronicOpening;
 import su.nightexpress.excellentcrates.CratesAPI;
@@ -19,7 +18,7 @@ public class ExcellentCratesListener implements Listener {
         this.verifyProviders();
 
         Crate crate = event.getCrate();
-        if (!Objects.equals(crate.getOpeningConfig(), "regrowth-default")) {
+        if (!Objects.equals(crate.getName(), "regrowth-default")) {
             return;
         }
 
@@ -33,9 +32,9 @@ public class ExcellentCratesListener implements Listener {
 
     // TODO: Remove when ExcellentCrates adds proper reload impl
     private void verifyProviders() {
-        OpeningManager openingManager = CratesAPI.PLUGIN.getOpeningManager();
+        OpeningManager openingManager = CratesAPI.getPlugin().getOpeningManager();
 
-        if (openingManager.getOpeningProvider("regrowth-default") == null) {
+        if (openingManager.getProviderById("regrowth-default") == null) {
             openingManager.loadProvider("regrowth-default", AnimatronicOpening::new);
         }
     }

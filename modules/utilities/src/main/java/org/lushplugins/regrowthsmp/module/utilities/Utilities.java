@@ -2,6 +2,7 @@ package org.lushplugins.regrowthsmp.module.utilities;
 
 import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
+import org.lushplugins.regrowthsmp.module.utilities.command.ShareRewindCommand;
 import org.lushplugins.regrowthsmp.module.utilities.command.TimerCommand;
 
 public class Utilities extends Module {
@@ -14,6 +15,7 @@ public class Utilities extends Module {
             instance = this;
         }
 
+        plugin.registerCommand(new ShareRewindCommand());
         plugin.registerCommand(new TimerCommand());
     }
 

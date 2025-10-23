@@ -58,7 +58,7 @@ public class StepAbility extends Ability implements Listener {
     }
 
     private void applyAttribute(Player player) {
-        Attribute attribute = RegistryUtils.parseString("generic.step_height", Registry.ATTRIBUTE);
+        Attribute attribute = RegistryUtils.parseString("step_height", Registry.ATTRIBUTE);
         if (attribute == null) {
             return;
         }

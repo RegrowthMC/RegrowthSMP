@@ -17,7 +17,9 @@ import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 public class TreeChomperAbility extends Ability implements Listener {
 
@@ -27,7 +29,7 @@ public class TreeChomperAbility extends Ability implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        if (event.isCancelled())  {
+        if (event.isCancelled()) {
             return;
         }
 
@@ -73,6 +75,7 @@ public class TreeChomperAbility extends Ability implements Listener {
     }
 
     public static class LumberTask {
+        public static final HashSet<UUID> PLAYERS_LUMBERING = new HashSet<>();
         private static final int[] VERTICAL_BREAK_ORDER = new int[]{ 0, 1 };
         private static final int[][] BREAK_ORDER = new int[][]{
             { -1, 0 },
@@ -111,6 +114,8 @@ public class TreeChomperAbility extends Ability implements Listener {
                 return;
             }
 
+            UUID uuid = player.getUniqueId();
+            PLAYERS_LUMBERING.add(uuid);
             if (!Abilities.getInstance().getPlugin().callEvent(new BlockBreakEvent(block, player))) {
                 return;
             }
@@ -118,6 +123,7 @@ public class TreeChomperAbility extends Ability implements Listener {
             // Handle block break
             blocksBroken += 1;
             block.breakNaturally();
+            PLAYERS_LUMBERING.remove(uuid);
 
             // Handle sounds/particles
             BlockData blockData = blockType.createBlockData();

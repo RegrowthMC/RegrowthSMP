@@ -6,6 +6,7 @@ softdepend:
   - Animatronics
   - EnchantedBosses
   - ExcellentCrates
+  - Vulcan
   - WorldGuard
 commands:
   regrowthsmp:

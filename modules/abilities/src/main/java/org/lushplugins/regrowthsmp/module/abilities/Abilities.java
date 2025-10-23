@@ -10,6 +10,7 @@ import org.lushplugins.regrowthsmp.module.abilities.ability.*;
 import org.lushplugins.regrowthsmp.module.abilities.command.AbiltiesCommand;
 import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
 import org.lushplugins.regrowthsmp.module.abilities.hook.PlaceholderAPIHook;
+import org.lushplugins.regrowthsmp.module.abilities.hook.VulcanAPIHook;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -36,6 +37,7 @@ public class Abilities extends Module {
         registerEffect(new TreeChomperAbility());
 
         new PlaceholderAPIHook().enable();
+        plugin.ifPluginPresent("Vulcan", VulcanAPIHook::register);
 
         plugin.registerCommand(new AbiltiesCommand());
     }

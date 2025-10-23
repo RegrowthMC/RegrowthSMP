@@ -16,7 +16,9 @@ import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 public class OreCruncherAbility extends Ability implements Listener {
     private static final List<Material> ORES = List.of(
@@ -92,6 +94,7 @@ public class OreCruncherAbility extends Ability implements Listener {
     }
 
     public static class VeinMineTask {
+        public static final HashSet<UUID> PLAYERS_CRUNCHING = new HashSet<>();
         private static final int[] VERTICAL_BREAK_ORDER = new int[]{ 0, -1, 1 };
         private static final int[][] BREAK_ORDER = new int[][]{
             { 0, 0 },
@@ -135,6 +138,8 @@ public class OreCruncherAbility extends Ability implements Listener {
                 return;
             }
 
+            UUID uuid = player.getUniqueId();
+            PLAYERS_CRUNCHING.add(uuid);
             if (!Abilities.getInstance().getPlugin().callEvent(new BlockBreakEvent(block, player))) {
                 return;
             }
@@ -142,6 +147,7 @@ public class OreCruncherAbility extends Ability implements Listener {
             // Handle block break
             blocksBroken += 1;
             block.breakNaturally();
+            PLAYERS_CRUNCHING.remove(uuid);
 
             // Handle sounds/particles
             BlockData blockData = blockType.createBlockData();

@@ -138,16 +138,17 @@ public class OreCruncherAbility extends Ability implements Listener {
                 return;
             }
 
+            // Handle block break
             UUID uuid = player.getUniqueId();
             PLAYERS_CRUNCHING.add(uuid);
-            if (!Abilities.getInstance().getPlugin().callEvent(new BlockBreakEvent(block, player))) {
+            boolean brokeBlock = player.breakBlock(block);
+            PLAYERS_CRUNCHING.remove(uuid);
+
+            if (!brokeBlock) {
                 return;
             }
 
-            // Handle block break
             blocksBroken += 1;
-            block.breakNaturally();
-            PLAYERS_CRUNCHING.remove(uuid);
 
             // Handle sounds/particles
             BlockData blockData = blockType.createBlockData();

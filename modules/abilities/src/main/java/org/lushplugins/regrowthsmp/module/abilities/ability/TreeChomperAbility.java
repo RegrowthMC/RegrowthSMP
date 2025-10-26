@@ -114,16 +114,17 @@ public class TreeChomperAbility extends Ability implements Listener {
                 return;
             }
 
+            // Handle block break
             UUID uuid = player.getUniqueId();
             PLAYERS_LUMBERING.add(uuid);
-            if (!Abilities.getInstance().getPlugin().callEvent(new BlockBreakEvent(block, player))) {
+            boolean brokeBlock = player.breakBlock(block);
+            PLAYERS_LUMBERING.remove(uuid);
+
+            if (!brokeBlock) {
                 return;
             }
 
-            // Handle block break
             blocksBroken += 1;
-            block.breakNaturally();
-            PLAYERS_LUMBERING.remove(uuid);
 
             // Handle sounds/particles
             BlockData blockData = blockType.createBlockData();

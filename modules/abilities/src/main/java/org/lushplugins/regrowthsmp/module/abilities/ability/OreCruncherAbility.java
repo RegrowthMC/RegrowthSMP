@@ -1,5 +1,7 @@
 package org.lushplugins.regrowthsmp.module.abilities.ability;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.willfp.ecoskills.api.EcoSkillsAPI;
 import com.willfp.ecoskills.skills.Skill;
 import com.willfp.ecoskills.skills.Skills;
@@ -16,9 +18,9 @@ import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class OreCruncherAbility extends Ability implements Listener {
     private static final List<Material> ORES = List.of(
@@ -94,7 +96,9 @@ public class OreCruncherAbility extends Ability implements Listener {
     }
 
     public static class VeinMineTask {
-        public static final HashSet<UUID> PLAYERS_CRUNCHING = new HashSet<>();
+        public static final Cache<UUID, Boolean> PLAYERS_CRUNCHING = CacheBuilder.newBuilder()
+            .expireAfterWrite(2, TimeUnit.SECONDS)
+            .build();
         private static final int[] VERTICAL_BREAK_ORDER = new int[]{ 0, -1, 1 };
         private static final int[][] BREAK_ORDER = new int[][]{
             { 0, 0 },
@@ -140,9 +144,8 @@ public class OreCruncherAbility extends Ability implements Listener {
 
             // Handle block break
             UUID uuid = player.getUniqueId();
-            PLAYERS_CRUNCHING.add(uuid);
+            PLAYERS_CRUNCHING.put(uuid, true);
             boolean brokeBlock = player.breakBlock(block);
-            PLAYERS_CRUNCHING.remove(uuid);
 
             if (!brokeBlock) {
                 return;

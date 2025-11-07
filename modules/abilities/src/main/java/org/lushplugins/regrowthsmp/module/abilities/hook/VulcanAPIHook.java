@@ -22,7 +22,7 @@ public class VulcanAPIHook {
             Check check = event.getCheck();
             if (check.getName().equals("fastbreak") && check.getType() == 'a') {
                 UUID uuid = event.getPlayer().getUniqueId();
-                if (TreeChomperAbility.LumberTask.PLAYERS_LUMBERING.contains(uuid) || OreCruncherAbility.VeinMineTask.PLAYERS_CRUNCHING.contains(uuid)) {
+                if (TreeChomperAbility.LumberTask.PLAYERS_LUMBERING.getIfPresent(uuid) != null || OreCruncherAbility.VeinMineTask.PLAYERS_CRUNCHING.getIfPresent(uuid) != null) {
                     event.setCancelled(true);
                     return;
                 }

@@ -1,5 +1,7 @@
 package org.lushplugins.regrowthsmp.module.abilities.ability;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.willfp.ecoskills.api.EcoSkillsAPI;
 import com.willfp.ecoskills.skills.Skill;
 import com.willfp.ecoskills.skills.Skills;
@@ -17,9 +19,9 @@ import org.lushplugins.regrowthsmp.module.abilities.data.AbilitiesUser;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class TreeChomperAbility extends Ability implements Listener {
 
@@ -75,7 +77,9 @@ public class TreeChomperAbility extends Ability implements Listener {
     }
 
     public static class LumberTask {
-        public static final HashSet<UUID> PLAYERS_LUMBERING = new HashSet<>();
+        public static final Cache<UUID, Boolean> PLAYERS_LUMBERING = CacheBuilder.newBuilder()
+            .expireAfterWrite(2, TimeUnit.SECONDS)
+            .build();
         private static final int[] VERTICAL_BREAK_ORDER = new int[]{ 0, 1 };
         private static final int[][] BREAK_ORDER = new int[][]{
             { -1, 0 },
@@ -116,9 +120,8 @@ public class TreeChomperAbility extends Ability implements Listener {
 
             // Handle block break
             UUID uuid = player.getUniqueId();
-            PLAYERS_LUMBERING.add(uuid);
+            PLAYERS_LUMBERING.put(uuid, true);
             boolean brokeBlock = player.breakBlock(block);
-            PLAYERS_LUMBERING.remove(uuid);
 
             if (!brokeBlock) {
                 return;

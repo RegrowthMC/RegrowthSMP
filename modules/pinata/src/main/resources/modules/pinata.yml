@@ -1,4 +1,5 @@
 spawn-command: "pinata spawn 0 70 0 world"
+spawn-duration: 90
 
 messages:
   prepare-pinata-discord: "The pinata pool is now accepting items at /warp pinata!"

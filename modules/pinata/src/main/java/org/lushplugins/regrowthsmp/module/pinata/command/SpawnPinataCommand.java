@@ -3,9 +3,6 @@ package org.lushplugins.regrowthsmp.module.pinata.command;
 import club.minnced.discord.webhook.WebhookClient;
 import club.minnced.discord.webhook.send.WebhookEmbedBuilder;
 import club.minnced.discord.webhook.send.WebhookMessageBuilder;
-import me.xemor.enchantedbosses.BossHandler;
-import me.xemor.enchantedbosses.EnchantedBosses;
-import me.xemor.enchantedbosses.SkillEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.command.CommandSender;
@@ -19,8 +16,6 @@ import org.lushplugins.regrowthsmp.module.pinata.Pinata;
 
 import java.awt.*;
 import java.time.Duration;
-import java.util.List;
-import java.util.logging.Level;
 
 public class SpawnPinataCommand extends Command {
 
@@ -37,7 +32,7 @@ public class SpawnPinataCommand extends Command {
             BarStyle.SEGMENTED_10,
             Pinata.getInstance().getPlugin(),
             duration);
-        timer.onFinish(SpawnPinataCommand::spawnRandomPinata);
+        timer.onFinish(() -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Pinata.getInstance().getConfigManager().getSpawnCommand()));
         timer.addOnlinePlayers();
         timer.start();
         Pinata.getInstance().getConfigManager().getOptionalMessage("pre-spawn")
@@ -68,20 +63,5 @@ public class SpawnPinataCommand extends Command {
                 });
             });
         return true;
-    }
-
-    private static void spawnRandomPinata() {
-        List<String> pinataTypes = Pinata.getInstance().getConfigManager().getPinatas();
-        String pinataType = pinataTypes.get(Pinata.getRandom().nextInt(pinataTypes.size()));
-
-        BossHandler bossHandler = EnchantedBosses.getInstance().getBossHandler();
-        SkillEntity skillEntity = bossHandler.getBoss(pinataType);
-        if (skillEntity == null) {
-            Pinata.getInstance().getPlugin().getLogger().log(Level.WARNING, "'%s' is not a valid boss type".formatted(pinataType));
-            return;
-        }
-
-        bossHandler.spawn(skillEntity, Pinata.getInstance().getConfigManager().getSpawnLocation());
-        Pinata.getInstance().getConfigManager().getOptionalMessage("spawn").ifPresent(ChatColorHandler::broadcastMessage);
     }
 }

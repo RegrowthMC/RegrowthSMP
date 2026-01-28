@@ -1,13 +1,4 @@
-health-per-player: 5
-max-health: 250
-spawn-location:
-  world: world
-  x: 0
-  y: 70
-  z: 0
-
-pinatas:
-  - "Sniffer"
+spawn-command: "pinata spawn 0 70 0 world"
 
 messages:
   prepare-pinata-discord: "The pinata pool is now accepting items at /warp pinata!"

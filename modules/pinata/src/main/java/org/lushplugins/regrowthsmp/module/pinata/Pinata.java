@@ -6,7 +6,6 @@ import org.lushplugins.regrowthsmp.module.pinata.bossbar.BossBarManager;
 import org.lushplugins.regrowthsmp.module.pinata.command.PreparePinataCommand;
 import org.lushplugins.regrowthsmp.module.pinata.command.SpawnPinataCommand;
 import org.lushplugins.regrowthsmp.module.pinata.config.ConfigManager;
-import org.lushplugins.regrowthsmp.module.pinata.listener.BossListener;
 import org.lushplugins.regrowthsmp.module.pinata.listener.PlayerListener;
 
 import java.util.Random;
@@ -28,7 +27,6 @@ public final class Pinata extends Module {
         this.configManager = new ConfigManager();
         this.bossBarManager = new BossBarManager();
 
-        plugin.registerListener(new BossListener());
         plugin.registerListener(new PlayerListener());
 
         plugin.registerCommand(new PreparePinataCommand());

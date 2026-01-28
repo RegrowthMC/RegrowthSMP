@@ -1,7 +1,5 @@
 package org.lushplugins.regrowthsmp.module.pinata.config;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
@@ -14,9 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ConfigManager {
-    private int healthPerPlayer;
-    private int maxHealth;
-    private Location spawnLocation;
+    private String spawnCommand;
     private int spawnDuration;
     private List<String> pinatas;
     private Map<String, String> messages;
@@ -29,14 +25,7 @@ public class ConfigManager {
     public void reloadConfig() {
         ConfigurationSection config = Pinata.getInstance().getPlugin().getConfigResource("modules/pinata.yml");
 
-        this.healthPerPlayer = config.getInt("health-per-player", 5);
-        this.maxHealth = config.getInt("max-health", 250);
-        this.spawnLocation = new Location(
-            Bukkit.getWorld(config.getString("spawn-location.world", "world")),
-            config.getDouble("spawn-location.x"),
-            config.getDouble("spawn-location.y"),
-            config.getDouble("spawn-location.z")
-        );
+        this.spawnCommand = config.getString("spawn-command");
         this.spawnDuration = config.getInt("spawn-duration", 30);
         this.pinatas = config.getStringList("pinatas");
         this.messages = config.getConfigurationSection("messages").getValues(false).entrySet().stream()
@@ -47,16 +36,8 @@ public class ConfigManager {
         this.discordWebhook = config.getString("discord-webhook");
     }
 
-    public int getHealthPerPlayer() {
-        return healthPerPlayer;
-    }
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
-    public Location getSpawnLocation() {
-        return spawnLocation;
+    public String getSpawnCommand() {
+        return spawnCommand;
     }
 
     public int getSpawnDuration() {

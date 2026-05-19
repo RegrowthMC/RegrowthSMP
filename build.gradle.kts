@@ -105,9 +105,11 @@ tasks {
         minecraftVersion("1.21.8")
 
         downloadPlugins {
+            modrinth("viaversion", "5.7.1")
+            modrinth("viabackwards", "5.7.1")
             modrinth("luckperms", "v5.4.145-bukkit")
             hangar("Floodgate", "Floodgate")
-            github("nulli0n", "nightcore-spigot", "v2.9.4", "nightcore-2.9.4.jar")
+            modrinth("nightcore", "2.9.4")
             hangar("PlaceholderAPI", "2.11.6")
             modrinth("packetevents", "2.10.0")
             modrinth("worldedit", "Jk1z2u7n")

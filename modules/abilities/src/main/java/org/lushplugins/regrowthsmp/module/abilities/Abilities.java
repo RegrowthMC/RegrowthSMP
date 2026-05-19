@@ -33,6 +33,7 @@ public class Abilities extends Module {
         registerEffect(new FriendlyMobsAbility());
         registerEffect(new GrowthDanceAbility());
         registerEffect(new OreCruncherAbility());
+        registerEffect(new RainDanceAbility());
         registerEffect(new StepAbility());
         registerEffect(new TreeChomperAbility());
 

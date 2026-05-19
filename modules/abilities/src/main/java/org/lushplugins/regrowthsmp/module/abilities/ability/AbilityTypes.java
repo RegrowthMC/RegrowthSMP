@@ -7,6 +7,7 @@ public class AbilityTypes {
     public static final String FRIENDLY_MOBS = "friendly_mobs";
     public static final String GROWTH_DANCE = "growth_dance";
     public static final String ORE_CRUNCHER = "ore_cruncher";
+    public static final String RAIN_DANCE = "rain_dance";
     public static final String STEP = "step";
     public static final String TREE_CHOMPER = "tree_chomper";
 }

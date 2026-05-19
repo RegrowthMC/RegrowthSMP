@@ -23,7 +23,7 @@ public class AbilitiesMenu extends Gui {
         super(36, ChatColorHandler.translate("&#65A74BAbilities"), player);
 
         addButton(11, new AbilityButton(AbilityTypes.BETTER_POTIONS, "sorcery", Material.OMINOUS_BOTTLE, List.of("Gain an &#FFD392extra potion level &#A7A4A0for", "consumed potions")));
-        addButton(12, new AbilityButton(AbilityTypes.BOAT_BOOST, "fishing", Material.SPRUCE_BOAT, List.of("Gain a &#FFD392speed boost &#A7A4A0when using a", "fishing rod from within a boat")));
+        addButton(12, new AbilityButton(AbilityTypes.RAIN_DANCE, "fishing", Material.TROPICAL_FISH, List.of("Crouch lots to &#FFD392summon rain&#A7A4A0, with a chance", "of &#FFD392fish&#A7A4A0, around you! More players", "dancing will cause &#FFD392more fish&#A7A4A0 to drop!")));
         addButton(13, new AbilityButton(AbilityTypes.CONTACT_INVULNERABILITY, "armory", Material.SHIELD, List.of("Become &#FFD392immune &#A7A4A0to damage from", "&#FFD392sweet berries&#A7A4A0, &#FFD392cactus&#A7A4A0, &#FFD392magma blocks", "and other contact related damage")));
         addButton(14, new AbilityButton(AbilityTypes.FRIENDLY_MOBS, "combat", Material.ZOMBIE_SPAWN_EGG, List.of("Become frenemies with &#FFD392Zombies&#A7A4A0, &#FFD392Skeletons&#A7A4A0", "and &#FFD392Spiders&#A7A4A0, they will &#FFD392no longer", "&#FFD392attack you &#A7A4A0unless provoked")));
         addButton(15, new AbilityButton(AbilityTypes.GROWTH_DANCE, "farming", Material.BEETROOT_SEEDS, List.of("Crouch lots near crops to encourage", "the worms to dance and &#FFD392grow your", "&#FFD392crops faster")));

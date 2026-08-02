@@ -79,18 +79,14 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":modules:abilities"))
     implementation(project(":modules:bookreader"))
-    implementation(project(":modules:claimnotifs"))
     implementation(project(":modules:cosmetics"))
     implementation(project(":modules:crateanimation"))
     implementation(project(":modules:extraluckpermscontexts"))
     implementation(project(":modules:functions"))
     implementation(project(":modules:glassitemframes"))
     implementation(project(":modules:pinata"))
-    implementation(project(":modules:recipes"))
-    implementation(project(":modules:schedule"))
     implementation(project(":modules:unbreakableblocks"))
     implementation(project(":modules:utilities"))
-    implementation(project(":modules:welcome"))
 }
 
 tasks {

@@ -5,18 +5,14 @@ import org.lushplugins.regrowthsmp.common.module.Module;
 import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
 import org.lushplugins.regrowthsmp.module.abilities.Abilities;
 import org.lushplugins.regrowthsmp.module.bookreader.BookReader;
-import org.lushplugins.regrowthsmp.module.claimnotifs.ClaimNotifs;
 import org.lushplugins.regrowthsmp.module.cosmetics.Cosmetics;
 import org.lushplugins.regrowthsmp.module.crateanimation.CrateAnimation;
 import org.lushplugins.regrowthsmp.module.extraluckpermscontexts.ExtraLuckPermsContexts;
 import org.lushplugins.regrowthsmp.module.function.Functions;
 import org.lushplugins.regrowthsmp.module.glassitemframes.GlassItemFrames;
 import org.lushplugins.regrowthsmp.module.pinata.Pinata;
-import org.lushplugins.regrowthsmp.module.recipes.Recipes;
 import org.lushplugins.regrowthsmp.module.unbreakableblocks.UnbreakableBlocks;
-import org.lushplugins.regrowthsmp.module.schedule.Schedule;
 import org.lushplugins.regrowthsmp.module.utilities.Utilities;
-import org.lushplugins.regrowthsmp.module.welcome.Welcome;
 
 import java.util.HashMap;
 import java.util.function.Function;
@@ -29,18 +25,14 @@ public class ModuleRegistry {
     public ModuleRegistry() {
         registerModule("abilities", (plugin) -> new Abilities(plugin));
         registerModule("book_reader", (plugin) -> new BookReader(plugin));
-        registerModule("claim_notifs", (plugin) -> new ClaimNotifs(plugin));
         registerModule("cosmetics", (plugin) -> new Cosmetics(plugin));
         registerModule("crate_animation", (plugin) -> new CrateAnimation(plugin));
         registerModule("functions", (plugin) -> new Functions(plugin));
         registerModule("glass_item_frames", (plugin) -> new GlassItemFrames(plugin));
         registerModule("luck_perms_contexts", (plugin) -> new ExtraLuckPermsContexts(plugin));
         registerModule("pinata", (plugin) -> new Pinata(plugin));
-        registerModule("recipes", (plugin) -> new Recipes(plugin));
-        registerModule("schedule", (plugin) -> new Schedule(plugin));
         registerModule("unbreakable_blocks", (plugin) -> new UnbreakableBlocks(plugin));
         registerModule("utilities", (plugin) -> new Utilities(plugin));
-        registerModule("welcome", (plugin) -> new Welcome(plugin));
     }
 
     public boolean isRegisteredModule(String moduleId) {

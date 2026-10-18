@@ -11,3 +11,5 @@ modules:
   unbreakable_blocks: true
   utilities: true
   welcome: true
+
+share-rewind-webhook: {}

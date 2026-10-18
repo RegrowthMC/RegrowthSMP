@@ -1,33 +1,11 @@
 name: RegrowthSMP
 version: '1.0.0'
 main: org.lushplugins.regrowthsmp.RegrowthSMP
-api-version: '1.21'
+api-version: '26.2'
+github-repo: RegrowthMC/RegrowthSMP
 softdepend:
   - Animatronics
   - EnchantedBosses
   - ExcellentCrates
   - Vulcan
   - WorldGuard
-commands:
-  regrowthsmp:
-    usage: /regrowthsmp
-  givecosmetic:
-    usage: /givecosmetic
-  recipes:
-    usage: /recipes
-  abilities:
-    usage: /abilities
-  function:
-    usage: /function
-  timer:
-    usage: /timer
-  preparepinata:
-    usage: /preparepinata
-  spawnpinata:
-    usage: /spawnpinata
-  schedule:
-    usage: /schedule
-  withdelayedtime:
-    usage: /withdelayedtime
-  sharerewind:
-    usage: /sharerewind

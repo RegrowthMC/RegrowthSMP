@@ -1,9 +1,0 @@
-# Where user data will be stored (Options: sqlite, mysql)
-type: sqlite
-
-storage:
-  host: localhost
-  port: 3306
-  database: dbName
-  user: user
-  password: pass

@@ -1,106 +1,97 @@
 package org.lushplugins.regrowthsmp;
 
-import org.lushplugins.lushlib.LushLib;
+import org.bukkit.boss.BarColor;
+import org.lushplugins.lushlib.utils.plugin.SpigotPlugin;
+import org.lushplugins.regrowthsmp.command.GiveCosmeticCommand;
 import org.lushplugins.regrowthsmp.command.RegrowthSMPCommand;
-import org.lushplugins.regrowthsmp.data.SMPUser;
-import org.lushplugins.regrowthsmp.common.plugin.RegrowthPlugin;
-import org.lushplugins.regrowthsmp.config.ConfigManager;
-import org.lushplugins.regrowthsmp.data.UserManager;
-import org.lushplugins.regrowthsmp.listener.PlayerListener;
-import org.lushplugins.regrowthsmp.module.ModuleManager;
-import org.lushplugins.regrowthsmp.module.ModuleRegistry;
-import org.lushplugins.regrowthsmp.module.bookreader.BookReader;
-import org.lushplugins.regrowthsmp.storage.StorageManager;
+import org.lushplugins.regrowthsmp.command.ShareRewindCommand;
+import org.lushplugins.regrowthsmp.command.TimerCommand;
+import org.lushplugins.regrowthsmp.command.suggest.TimerColor;
+import org.lushplugins.regrowthsmp.config.Config;
+import org.lushplugins.regrowthsmp.config.CosmeticsConfig;
+import org.lushplugins.regrowthsmp.hook.excellentcrates.ExcellentCratesHook;
+import org.lushplugins.regrowthsmp.hook.luckperms.LuckPermsHook;
+import org.lushplugins.regrowthsmp.hook.worldguard.WorldGuardHook;
+import org.lushplugins.regrowthsmp.hook.worldguard.listener.BookReaderListener;
+import revxrsal.commands.bukkit.BukkitLamp;
 
-import java.util.UUID;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public final class RegrowthSMP extends RegrowthPlugin {
+public final class RegrowthSMP extends SpigotPlugin {
     private static RegrowthSMP plugin;
 
-    private ModuleRegistry moduleRegistry;
-    private StorageManager storageManager;
-    private UserManager userManager;
-    private ModuleManager moduleManager;
-    private ConfigManager configManager;
+    private Config config;
+    private CosmeticsConfig cosmeticsConfig;
 
     @Override
     public void onLoad() {
         plugin = this;
-        LushLib.getInstance().enable(this);
-        moduleRegistry = new ModuleRegistry();
 
-        BookReader.prepare();
+        ifPluginPresent("WorldGuard", WorldGuardHook::registerFlags);
     }
 
     @Override
     public void onEnable() {
-        storageManager = new StorageManager();
-        userManager = new UserManager();
-        moduleManager = new ModuleManager();
+        config = new Config();
+        config.reload();
 
-        configManager = new ConfigManager();
-        configManager.reload();
+        cosmeticsConfig = new CosmeticsConfig();
+        cosmeticsConfig.reload();
 
-        registerListener(new PlayerListener());
+        //noinspection Convert2MethodRef
+        ifPluginPresent("ExcellentCrates", () -> new ExcellentCratesHook());
+        ifPluginPresent("LuckPerms", () -> LuckPermsHook.registerContexts(this));
+        ifPluginPresent("WorldGuard", () -> registerListener(new BookReaderListener()));
 
-        registerCommand(new RegrowthSMPCommand());
+        BukkitLamp.builder(this)
+            .parameterTypes(types -> types
+                .addParameterType(GiveCosmeticCommand.CosmeticFormat.class, (input, context) -> {
+                    String[] data = input.readString().split(":");
+                    int customModelData = Integer.parseInt(data[0]);
+                    String theme = data.length > 1 ? data[1] : "default";
+                    
+                    return new GiveCosmeticCommand.CosmeticFormat(customModelData, theme);
+                }))
+            .suggestionProviders(providers -> providers
+                .addProvider(GiveCosmeticCommand.CosmeticFormat.class, (context) -> {
+                    String argument = context.input().peekString();
+                    if (argument.isEmpty()) {
+                        return List.of("1", "2", "3", "4", "5", "6", "7", "8", "9");
+                    } else if (argument.contains(":")) {
+                        return RegrowthSMP.getInstance().getCosmeticsConfig().getDisplayNameFormats().stream()
+                            .map(format -> argument.split(":")[0] + ":" + format)
+                            .toList();
+                    } else {
+                        return List.of(argument + ":");
+                    }
+                })
+                .addProviderForAnnotation(TimerColor.class, (_) -> (context) -> {
+                    List<String> results = Arrays.stream(BarColor.values())
+                        .map(barColor -> barColor.name().toLowerCase())
+                        .collect(Collectors.toList());
+                    results.add("rainbow");
+                    return results;
+                }))
+            .build()
+            .register(
+                new GiveCosmeticCommand(),
+                new RegrowthSMPCommand(),
+                new ShareRewindCommand(),
+                new TimerCommand()
+            );
     }
 
-    @Override
-    public void onDisable() {
-        if (configManager != null) {
-            configManager.disable();
-            configManager = null;
-        }
-
-        if (moduleManager != null) {
-            moduleManager.disable();
-            moduleManager = null;
-        }
-
-        if (userManager != null) {
-            userManager = null;
-        }
-
-        if (storageManager != null) {
-            storageManager.disable();
-            storageManager = null;
-        }
+    public Config getMainConfig() {
+        return config;
     }
 
-    public ModuleRegistry getModuleRegistry() {
-        return moduleRegistry;
-    }
-
-    @Override
-    public SMPUser getCachedSMPUser(UUID uuid) {
-        return userManager.getCachedUser(uuid);
-    }
-
-    @Override
-    public void saveCachedSMPUser(UUID uuid) {
-        userManager.saveUser(this.getCachedSMPUser(uuid));
-    }
-
-    public StorageManager getStorageManager() {
-        return storageManager;
-    }
-
-    public UserManager getUserManager() {
-        return userManager;
-    }
-
-    public ModuleManager getModuleManager() {
-        return moduleManager;
-    }
-
-    public ConfigManager getConfigManager() {
-        return configManager;
+    public CosmeticsConfig getCosmeticsConfig() {
+        return cosmeticsConfig;
     }
 
     public static RegrowthSMP getInstance() {
         return plugin;
     }
-
-
 }

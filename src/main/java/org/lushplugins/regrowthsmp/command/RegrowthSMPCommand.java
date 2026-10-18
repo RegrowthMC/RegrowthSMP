@@ -1,23 +1,25 @@
 package org.lushplugins.regrowthsmp.command;
 
-import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.NotNull;
-import org.lushplugins.lushlib.command.Command;
-import org.lushplugins.lushlib.libraries.chatcolor.ChatColorHandler;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.lushplugins.regrowthsmp.RegrowthSMP;
+import revxrsal.commands.annotation.Command;
+import revxrsal.commands.annotation.Subcommand;
+import revxrsal.commands.bukkit.actor.BukkitCommandActor;
+import revxrsal.commands.bukkit.annotation.CommandPermission;
 
-public class RegrowthSMPCommand extends Command {
+@SuppressWarnings("unused")
+@Command("regrowthsmp")
+public class RegrowthSMPCommand {
 
-    public RegrowthSMPCommand() {
-        super("regrowthsmp");
-        addSubCommand(new ReloadCommand());
+    @Subcommand("reload")
+    @CommandPermission("regrowthsmp.reload")
+    public void reload(BukkitCommandActor actor) {
+        RegrowthSMP.getInstance().getMainConfig().reload();
 
-        // Plugin Modules
-    }
-
-    @Override
-    public boolean execute(@NotNull CommandSender sender, @NotNull org.bukkit.command.Command command, @NotNull String label, @NotNull String[] args, @NotNull String[] fullArgs) {
-        ChatColorHandler.sendMessage(sender, "&#a8e1ffYou are currently running &#58b1e0RegrowthSMP &#a8e1ffversion &#58b1e0" + RegrowthSMP.getInstance().getDescription().getVersion());
-        return true;
+        actor.sender().sendMessage(Component.text()
+            .content("RegrowthSMP has been reloaded")
+            .color(TextColor.fromHexString("#b7faa2"))
+            .build());
     }
 }

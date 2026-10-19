@@ -1,15 +1,1 @@
-modules:
-  claim_notifs: true
-  cosmetics: true
-  crate_animation: true
-  effects: true
-  glass_item_frames: true
-  pinata: true
-  luck_perms_contexts: true
-  recipes: true
-  schedule: true
-  unbreakable_blocks: true
-  utilities: true
-  welcome: true
-
 share-rewind-webhook: {}

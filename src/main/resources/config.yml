@@ -1,1 +1,5 @@
 share-rewind-webhook: {}
+
+# Feature changes may require restarts
+features:
+  crate-animation: true

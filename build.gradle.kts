@@ -41,6 +41,7 @@ dependencies {
     compileOnly("org.geysermc.floodgate:api:2.2.3-SNAPSHOT")
 
     // Libraries
+    implementation("org.lushplugins.lushlib:config:1.0.2")
     implementation("org.lushplugins.lushlib:utils:1.0.2")
     implementation("org.lushplugins.chatcolorhandler:paper:8.1.1")
     implementation("io.github.revxrsal:lamp.common:4.0.0-rc.19")

@@ -13,11 +13,14 @@ public final class ExcellentCratesHook {
 
     public ExcellentCratesHook() {
         OpeningManager openingManager = CratesAPI.getPlugin().getOpeningManager();
-        openingManager.loadProvider("regrowth-default", (player, source, key) -> {
-            return new AnimatronicOpening(this, player, source, key);
-        });
 
-        RegrowthSMP.getInstance().registerListener(new ExcellentCratesListener(this));
+        if (RegrowthSMP.getInstance().getMainConfig().isFeatureEnabled("crate-animation")) {
+            openingManager.loadProvider("regrowth-default", (player, source, key) -> {
+                return new AnimatronicOpening(this, player, source, key);
+            });
+
+            RegrowthSMP.getInstance().registerListener(new ExcellentCratesListener(this));
+        }
     }
 
     public boolean isCrateLocked(String crateName) {
